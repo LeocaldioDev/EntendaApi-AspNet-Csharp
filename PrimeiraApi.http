@@ -1,0 +1,6 @@
+@PrimeiraApi_HostAddress = http://localhost:5058
+
+GET {{PrimeiraApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
