@@ -1,6 +1,6 @@
 ﻿using PrimeiraApi.Domain.DTOs;
 
-namespace PrimeiraApi.Domain.Model
+namespace PrimeiraApi.Domain.Model.UserAggregate
 {
     public interface IUserRepository
     {

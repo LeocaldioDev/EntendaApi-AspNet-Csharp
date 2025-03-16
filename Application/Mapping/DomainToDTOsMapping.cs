@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PrimeiraApi.Domain.DTOs;
-using PrimeiraApi.Domain.Model;
+using PrimeiraApi.Domain.Model.UserAggregate;
 
 namespace PrimeiraApi.Application.Mapping
 {

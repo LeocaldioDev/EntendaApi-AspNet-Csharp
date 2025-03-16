@@ -1,5 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using PrimeiraApi.Domain.Model;
+using PrimeiraApi.Domain.Model.UserAggregate;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -12,7 +12,7 @@ namespace PrimeiraApi.Application.Services
         {
             var key = Encoding.ASCII.GetBytes(Key.Secret); // criptografia da chave
 
-            var tokenConfig = new SecurityTokenDescriptor  // configurando o token (payload,
+            var tokenConfig = new SecurityTokenDescriptor  // configurando o token (payload,...)
             {
                 Subject = new ClaimsIdentity(new Claim[] // criação das Claims
                 {

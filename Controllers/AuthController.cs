@@ -12,7 +12,7 @@ namespace PrimeiraApi.Controllers
         {
             if (userName == "Miguel" && passworld =="12345") 
             {
-                var token = TokenService.GenerateToken(new Domain.Model.User());
+                var token = TokenService.GenerateToken(new Domain.Model.UserAggregate.User());
 
                 return Ok(token);
             }

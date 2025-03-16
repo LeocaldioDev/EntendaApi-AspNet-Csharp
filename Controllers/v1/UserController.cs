@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Asp.Versioning;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -6,18 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using PrimeiraApi.Application.ViewModel;
 using PrimeiraApi.Domain.DTOs;
 using PrimeiraApi.Domain.Model;
+using PrimeiraApi.Domain.Model.UserAggregate;
 
-namespace PrimeiraApi.Controllers
+namespace PrimeiraApi.Controllers.v1
 {
-    [Route("api/PostUserController")]
+    [ApiVersion (1.0)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class PostUserController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly ILogger<PostUserController> _logger;
+        private readonly ILogger<UserController> _logger;
         private readonly IMapper _mapper;
 
-        public PostUserController(IUserRepository userRepository, ILogger<PostUserController> logger, IMapper mapper)
+        public UserController(IUserRepository userRepository, ILogger<UserController> logger, IMapper mapper)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -26,32 +29,33 @@ namespace PrimeiraApi.Controllers
 
         [Authorize] // Protege a rota com token
         [HttpPost]
-        public IActionResult Add([FromForm]UserViewModel user) {
+        public IActionResult Add([FromForm] UserViewModel user)
+        {
 
-           
 
-            var filepath = Path.Combine("Storage",user.photo.FileName);
+
+            var filepath = Path.Combine("Storage", user.photo.FileName);
 
             using Stream fileStream = new FileStream(filepath, FileMode.Create);
 
             user.photo.CopyTo(fileStream);
 
-            var usuario = new User(user.nome, user.age,filepath);
+            var usuario = new User(user.nome, user.age, filepath);
 
             _userRepository.Add(usuario);
 
             return Ok();
-        
+
         }
 
-       
+
         [HttpGet]
 
-        public IActionResult Get(int pageNumber, int pageQuantity) 
+        public IActionResult Get(int pageNumber, int pageQuantity)
         {
-           
-            var usuarios = _userRepository.Get(pageNumber,pageQuantity);
-         
+
+            var usuarios = _userRepository.Get(pageNumber, pageQuantity);
+
             _logger.LogInformation("Elementos Obtidos");
 
             return Ok(usuarios);
@@ -60,14 +64,15 @@ namespace PrimeiraApi.Controllers
         [Authorize]
         [HttpPost]
         [Route("{id}/download")]
-        public IActionResult Downloadphoto(int id) { 
+        public IActionResult Downloadphoto(int id)
+        {
 
-            var user= _userRepository.Get(id);
+            var user = _userRepository.Get(id);
 
             var DataBytes = System.IO.File.ReadAllBytes(user.photo);
 
             return File(DataBytes, "image/png");
-           
+
 
         }
 
@@ -82,7 +87,7 @@ namespace PrimeiraApi.Controllers
 
             var userDTO = _mapper.Map<UserDTO>(usuarios);
 
-           // _logger.LogInformation("Elementos Obtidos");
+            // _logger.LogInformation("Elementos Obtidos");
 
             return Ok(userDTO);
 
