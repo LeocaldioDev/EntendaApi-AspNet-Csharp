@@ -1,4 +1,4 @@
-# PrimeiraApi-AspNet-Csharp
+# EntendaApi-AspNet-Csharp
 
 Este projeto é uma API REST simples desenvolvida em ASP.NET Core, utilizando um banco de dados PostgreSQL. O objetivo principal é demonstrar a implementação de diversas funcionalidades comuns em APIs modernas, como autenticação JWT, manipulação de arquivos, paginação, tratamento de erros e Clean Architecture.
 
