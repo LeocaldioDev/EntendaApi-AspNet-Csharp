@@ -20,7 +20,7 @@ Este projeto é uma API REST simples desenvolvida em ASP.NET Core, utilizando um
     * Clean Architecture para melhor organização e manutenção do código.
     * Utilização de DTOs (Data Transfer Objects) e AutoMapper para mapeamento de objetos.
     * Versionamento da API.
-    * Configuração de CORS para permitir acesso de diferentes origens (incluindo um front-end Vue.js).
+    * Configuração de CORS para permitir acesso de diferentes origens.
     * Front-end simples em Vue.js para consumir a API.
 
 ## Tecnologias Utilizadas
@@ -30,7 +30,6 @@ Este projeto é uma API REST simples desenvolvida em ASP.NET Core, utilizando um
 * PostgreSQL
 * JWT (JSON Web Tokens)
 * AutoMapper
-* Vue.js
 
 
 ## Observações
