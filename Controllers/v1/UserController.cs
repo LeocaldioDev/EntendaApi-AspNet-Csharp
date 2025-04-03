@@ -61,6 +61,7 @@ namespace PrimeiraApi.Controllers.v1
             return Ok(usuarios);
 
         }
+        
         [Authorize]
         [HttpPost]
         [Route("{id}/download")]
